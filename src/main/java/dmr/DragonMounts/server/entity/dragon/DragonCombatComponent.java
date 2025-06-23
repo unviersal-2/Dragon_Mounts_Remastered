@@ -72,7 +72,7 @@ abstract class DragonCombatComponent extends DragonBreedableComponent {
     public boolean doHurtTarget(Entity entityIn) {
         DamageSource damageSource = level().damageSources().mobAttack(this);
         boolean attacked = entityIn.hurt(
-                damageSource, (float) getAttribute(Attributes.ATTACK_DAMAGE).getValue());
+                damageSource, (float) getAttribute(Attributes.ATTACK_DAMAGE).getValue() * (float) Math.pow(getScale(),1.75);
         if (attacked) {
             if (level() instanceof ServerLevel serverlevel) {
                 EnchantmentHelper.doPostAttackEffects(serverlevel, entityIn, damageSource);
