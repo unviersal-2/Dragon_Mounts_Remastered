@@ -146,7 +146,7 @@ abstract class DragonAttributeComponent extends DragonSpawnComponent {
     }
 
     public void updateAgeAttributes() {
-        setBaseValue(STEP_HEIGHT, Math.max(2 * getAgeProgress(), 1));
+        setBaseValue(STEP_HEIGHT, Math.max(2 * getScale() * getAgeProgress(), 1));
 
         var mod = new AttributeModifier(SCALE_MODIFIER, getScale(), Operation.ADD_VALUE);
         var attributes = List.of(MAX_HEALTH, ATTACK_DAMAGE);
@@ -172,7 +172,7 @@ abstract class DragonAttributeComponent extends DragonSpawnComponent {
     public void setEggBreedAttributes(TameableDragonEntity mate, Supplier<DMREggBlockEntity> eggBlockEntitySupplier) {
         var lowestHealth = Math.min(entityData.get(healthAttribute), mate.entityData.get(healthAttribute));
         var highestHealth = Math.max(entityData.get(healthAttribute), mate.entityData.get(healthAttribute));
-        eggBlockEntitySupplier.get().setHealthAttribute(randomUpperLower(lowestHealth, highestHealth));
+        eggBlockEntitySupplier.get().setHealthAttribute(randomUpperLower(lowestHealth, highestHealth) * Math.pow(getScale(),2.25));
 
         var lowestSpeed = Math.min(entityData.get(speedAttribute), mate.entityData.get(speedAttribute));
         var highestSpeed = Math.max(entityData.get(speedAttribute), mate.entityData.get(speedAttribute));
