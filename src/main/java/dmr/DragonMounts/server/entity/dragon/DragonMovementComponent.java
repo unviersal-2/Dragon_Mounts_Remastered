@@ -59,7 +59,7 @@ abstract class DragonMovementComponent extends DragonInventoryComponent {
      */
     @Override
     public float getFlyingSpeed() {
-        return (isSprinting() ? 1.25f : 1) * (float) getAttributeValue(FLYING_SPEED);
+        return (isSprinting() ? 1.25f : 1) * (float) getAttributeValue(FLYING_SPEED) * (float) getScale();
     }
 
     /**
@@ -67,7 +67,7 @@ abstract class DragonMovementComponent extends DragonInventoryComponent {
      */
     @Override
     public float getSpeed() {
-        return ((isSprinting() ? 1.25f : 1) * (float) getAttributeValue(Attributes.MOVEMENT_SPEED));
+        return ((isSprinting() ? 1.25f : 1) * (float) getAttributeValue(Attributes.MOVEMENT_SPEED)) * (float) getScale();
     }
     /** Checks if the dragon can fly. */
     public boolean canFly() {
